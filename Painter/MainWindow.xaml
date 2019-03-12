@@ -1,0 +1,18 @@
+﻿<Window x:Class="Painter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Painter"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid x:Name="GrdMain" Margin="0,0,0,60"/>
+        <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+            <Button Content="玫瑰图" Height="24" Click="RoseClick" Width="60" Margin="10"/>
+            <Button Content="排序玫瑰图" Height="24" Click="RoseSortClick" Width="60" Margin="10"/>
+            <Button Content="雷达图" Height="24" Click="RadarClick" Width="60" Margin="10"/>
+            <Button Content="对比雷达图" Height="24" Click="RadarsClick" Width="60" Margin="10"/>
+        </StackPanel>
+    </Grid>
+</Window>
