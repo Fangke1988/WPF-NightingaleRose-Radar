@@ -146,6 +146,9 @@ namespace Painter
                 double angleSectorEnd = 0;
 
                 //循环绘制扇形区域
+                int scaleTimeSpan = 0;
+                int pathTimespan = 0;
+                int textTimeSpan = 0;
                 for (int index = 0; index < Datas.Count; index++)
                 {
                     //计算扇形角度
@@ -215,8 +218,10 @@ namespace Painter
                     }
                     catch (Exception exp)
                     { }
-                    CanvasPanel.Children.Add(pthSector);
+                    AnimationUtils.FloatElement(pthSector,1, 200, pathTimespan += 200);
+                    AnimationUtils.ScaleRotateEasingAnimationShow(pthSector,0.1,1,1500, scaleTimeSpan += 200,null );
 
+                    CanvasPanel.Children.Add(pthSector);
                     if (ShowValuesLabel)
                     {
                         //计算延伸线角度
@@ -227,8 +232,10 @@ namespace Painter
                         Point ptLbEnd = GetPoint(maxRadius + LabelPathLength, lbPathAngle * Math.PI / 180);
                         Path pthLb = new Path() { Stroke = Datas[index].Stroke, StrokeThickness = 1 };
                         pthLb.Data = (Geometry)new GeometryConverter().ConvertFromString(string.Format("M{0},{1} {2},{3}", ptLbStart.X.ToString(), ptLbStart.Y.ToString(), ptLbEnd.X.ToString(), ptLbEnd.Y.ToString()));
+                        double dur = (textTimeSpan += 200) + 1500;
+                        AnimationUtils.CtrlDoubleAnimation(pthLb, 1000, dur);
                         CanvasPanel.Children.Add(pthLb);
-                        SetLabel(Datas[index], ptLbEnd);
+                        SetLabel(Datas[index], ptLbEnd, dur);
                     }
                 }
                 this.SizeChanged -= RadarControl_SizeChanged;
@@ -270,7 +277,7 @@ namespace Painter
             return new Point(radius * Math.Cos(angel), radius * Math.Sin(angel));
         }
 
-        private void SetLabel(RadarObj obj, Point location)
+        private void SetLabel(RadarObj obj, Point location,double duration)
         {
             //计算偏移量
             bool x = true;
@@ -284,6 +291,7 @@ namespace Painter
             TextBlock txb = new TextBlock() { Text = " "+obj.Name+" "+Getbfb(Count.ToString(), obj.DataValue.ToString(), 2)+ " ", Foreground = this.Foreground, FontSize = this.FontSize };
             Size s = ControlSizeUtils.GetTextAreaSize(txb.Text, this.FontSize);
             CanvasPanel.Children.Add(txb);
+            AnimationUtils.CtrlDoubleAnimation(txb, 1000, duration);
             if (location.X > -5 && location.X < 5)
                 Canvas.SetLeft(txb, location.X - (s.Width / 2));
             else

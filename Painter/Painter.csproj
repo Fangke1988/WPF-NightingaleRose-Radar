@@ -53,6 +53,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ChartColorPool.cs" />
+    <Compile Include="AnimationUtils.cs" />
     <Compile Include="ControlSizeUtils.cs" />
     <Compile Include="RadarControl.xaml.cs">
       <DependentUpon>RadarControl.xaml</DependentUpon>
