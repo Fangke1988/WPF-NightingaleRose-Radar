@@ -168,7 +168,7 @@ namespace Painter
                         angleSectorEnd = angleSectorStart + Datas[index].DataValue * angelScale;
                     }
                     var currentRadius = RoseInsideMargin + Datas[index].DataRaidus;
-
+                    //计算扇形点位，用于绘制PATH
                     Point ptOutSideStart = GetPoint(currentRadius, angleSectorStart * Math.PI / 180);
                     Point ptOutSideEnd = GetPoint(currentRadius, angleSectorEnd * Math.PI / 180);
                     Point ptInSideStart = GetPoint(RoseInsideMargin, angleSectorStart * Math.PI / 180);
@@ -218,6 +218,7 @@ namespace Painter
                     }
                     catch (Exception exp)
                     { }
+                    //设置扇形显示的动画
                     AnimationUtils.FloatElement(pthSector,1, 200, pathTimespan += 200);
                     AnimationUtils.ScaleRotateEasingAnimationShow(pthSector,0.1,1,1500, scaleTimeSpan += 200,null );
 

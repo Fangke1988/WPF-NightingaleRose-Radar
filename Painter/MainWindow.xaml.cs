@@ -24,6 +24,11 @@ namespace Painter
             InitializeComponent();
         }
 
+       
+
+   
+        Random rdm = new Random();
+
         private void RoseClick(object sender, RoutedEventArgs e)
         {
             NightingaleRose rdc = new NightingaleRose();
@@ -31,16 +36,22 @@ namespace Painter
             this.GrdMain.Children.Add(rdc);
             rdc.SetData(CrData());
         }
-
         private void RadarClick(object sender, RoutedEventArgs e)
         {
-            RadarControl rdc = new RadarControl() {  AreaBrush= Brushes.Black,RadarNetBrush= Brushes.Black,AreaPointBrush=Brushes.Orange, BorderBrush=Brushes.Gray};
+            RadarControl rdc = new RadarControl() { AreaBrush = Brushes.Black, RadarNetBrush = Brushes.Black, AreaPointBrush = Brushes.Orange, BorderBrush = Brushes.Gray };
             this.GrdMain.Children.Clear();
             this.GrdMain.Children.Add(rdc);
 
             rdc.SetData(CrData());
         }
-        Random rdm = new Random();
+        private void RadarsClick(object sender, RoutedEventArgs e)
+        {
+            RadarControl rdc = new RadarControl() { MoreGraphics = true, AreaBrush = Brushes.Black, RadarNetBrush = Brushes.Black, AreaPointBrush = Brushes.Orange, BorderBrush = Brushes.Gray, RadarNetBrushes = new List<Brush> { Brushes.LightSkyBlue, Brushes.Violet } };
+            this.GrdMain.Children.Clear();
+            this.GrdMain.Children.Add(rdc);
+            List<RadarObj>[] lst = { CrData(), CrData() };
+            rdc.SetData(lst);
+        }
         private List<RadarObj> CrData()
         {
             List<RadarObj> list = new List<RadarObj>();
@@ -54,14 +65,7 @@ namespace Painter
             return list;
         }
 
-        private void RadarsClick(object sender, RoutedEventArgs e)
-        {
-            RadarControl rdc = new RadarControl() { MoreGraphics= true, AreaBrush = Brushes.Black, RadarNetBrush = Brushes.Black, AreaPointBrush = Brushes.Orange, BorderBrush = Brushes.Gray,RadarNetBrushes=new List<Brush> { Brushes.LightSkyBlue, Brushes.Violet } };
-            this.GrdMain.Children.Clear();
-            this.GrdMain.Children.Add(rdc);
-            List<RadarObj>[] lst = { CrData(), CrData() };
-            rdc.SetData(lst);
-        }
+       
 
         private void RoseSortClick(object sender, RoutedEventArgs e)
         {
